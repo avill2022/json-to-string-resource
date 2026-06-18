@@ -1,0 +1,150 @@
+Task: Create a Python JSON to Android Strings XML Converter
+
+Create a new Python program named json_to_android_strings.py.
+
+Purpose
+
+The program must convert a JSON file containing an array of objects into an Android strings.xml-style file.
+
+Input JSON Format
+
+The input JSON will always be an array of objects:
+
+[
+  {
+    "id": 1,
+    "title": "Welcome",
+    "description": "Hello World"
+  },
+  {
+    "id": 2,
+    "title": "Settings",
+    "description": "Configure the application"
+  }
+]
+Rules
+Every object contains an id field.
+Objects may contain one or more additional fields.
+All fields except id must be exported.
+The field names may vary between files.
+Output Format
+
+For every field except id, generate an Android string resource using the format:
+
+<string name="FIELDNAME_ID">CONTENT</string>
+
+Where:
+
+FIELDNAME = the JSON property name.
+ID = the object's id.
+CONTENT = the field value.
+Example
+
+Input:
+
+[
+  {
+    "id": 1,
+    "title": "Welcome",
+    "description": "Hello World"
+  }
+]
+
+Output:
+
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_1">Welcome</string>
+    <string name="description_1">Hello World</string>
+</resources>
+Processing Rules
+
+For each JSON object:
+
+Read the id.
+Iterate through all properties.
+Skip the id property.
+Generate one <string> entry for every remaining property.
+
+Example:
+
+Input:
+
+[
+  {
+    "id": 5,
+    "name": "John",
+    "city": "London",
+    "country": "UK"
+  }
+]
+
+Output:
+
+<resources>
+    <string name="name_5">John</string>
+    <string name="city_5">London</string>
+    <string name="country_5">UK</string>
+</resources>
+XML Escaping
+
+The program must properly escape Android XML special characters:
+
+& → &amp;
+< → &lt;
+> → &gt;
+' → \'
+" → \"
+
+Example:
+
+[
+  {
+    "id": 1,
+    "text": "Tom & Jerry"
+  }
+]
+
+Output:
+
+<string name="text_1">Tom &amp; Jerry</string>
+Output File Naming
+
+If the input file is:
+
+strings-name.json
+
+Generate:
+
+strings-name.xml
+
+The XML file must be saved in the same directory as the source JSON file.
+
+Additional Requirements
+Validate that the JSON root is an array.
+Validate that each object contains an id.
+Handle empty values gracefully.
+Preserve Unicode characters.
+Generate a valid Android resources XML document.
+Use UTF-8 encoding.
+Display meaningful error messages if the JSON is invalid.
+Expected Result
+
+Convert every JSON field (except id) into an Android string resource using the pattern:
+
+<string name="fieldname_id">value</string>
+
+and save all generated entries inside a valid Android resources XML file.
+
+
+
+
+Create the `python-dotenv` file if it doesn't exist; if it does, update it if necessary.
+
+Create the `requirement.txt` file to install the dependencies if it doesn't exist; if it does, update it if necessary.
+
+Create a `flake.nix` file to prepare the development environment in nixos if it doesn't exist; if it does, update it if necessary.
+
+Create the `README.md` file and add instructions for using the project, including installing the dependencies and the `python-dotenv` file.
+
+create a .gitingore file and add the most common files and folders for a python projects. 
